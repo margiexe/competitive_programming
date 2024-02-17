@@ -3,7 +3,7 @@ class UnionFind
 private:
     vi p, rank, setSize;
     int numSets;
-
+public:
     //initialization
     UnionFind(int N)
     {
