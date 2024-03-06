@@ -4,17 +4,17 @@ using namespace std;
 typedef long long ll;
 typedef vector<long long> vll;
 typedef vector<int> vi;
-typedef pair<int, int> ii;
+typedef pair<ll, ll> ii;
 typedef vector<ii> vii;
 
-const int INF = INT_MAX;
+const ll INF = 1e16;
 
 void dijkstra(int s, int n, vector<vii> &AL)
 {
-   vi dist(n, INF);
+   vll dist(n, INF);
    dist[s] = 0;
    set<ii> pq;
-   vi pred(n);
+   vll pred(n);
    for (int u = 0; u < n; u++)
    {
       pq.insert({dist[u], u});
@@ -38,8 +38,8 @@ void dijkstra(int s, int n, vector<vii> &AL)
    }
    if (dist[n - 1] != INF)
    {
-      vi path;
-      int current = n - 1;
+      vll path;
+      ll current = n - 1;
       while (current != 0)
       {
          path.push_back(current);
@@ -68,17 +68,16 @@ int main()
 #endif
    ios_base::sync_with_stdio(false);
 
-   int n, m;
+   ll n, m;
    cin >> n >> m;
    vector<vii> AL(n);
-   int u, v, w;
+   ll u, v, w;
    for (int i = 0; i < m; i++)
    {
       cin >> u >> v >> w;
       --u, --v;
       AL[u].push_back({v, w});
       AL[v].push_back({u, w});
-      
    }
    dijkstra(0, n, AL);
    return 0;
