@@ -65,7 +65,7 @@ public:
             }
          }
       }
-      return d[t]!=-1;
+      return d[t] != -1;
    }
    ll send_one_flow(ll s, ll t, ll f = INF) // send one flow from s-->t
    {
@@ -104,43 +104,18 @@ int main()
    freopen("error.txt", "w", stderr);
 #endif
    ios_base::sync_with_stdio(false);
-   // int t = 1;
-   // cin >> t;
-   // while (t--)
-   // {
-   ll n, m;
-   cin >> n;
-   vll a(n);
-   for (int i = 0; i < n; i++)
-   {
-      cin >> a[i];
+   
+   ll e;
+   cin>>e;
+   max_flow maxf(1000);
+   for(int i=0; i<e; i++){
+      int x,y;
+      cin>>x>>y;
+      int w;
+      cin>>w;
+      maxf.add_edge(x, y, w);
    }
-   cin >> m;
-   vll b(m);
-   for (int i = 0; i < m; i++)
-   {
-      cin >> b[i];
-   }
-   max_flow maxf(n + m + 2);
-   for (int i = 0; i < n; i++)
-   {
-      for (int j = 0; j < m; j++)
-      {
-         if (abs(a[i] - b[j]) <= 1)
-         {
-            maxf.add_edge(i + 1, n + j + 1, 1);
-         }
-      }
-   }
-   for (int i = 1; i <= n; i++)
-   {
-      maxf.add_edge(0, i, 1);
-   }
-   for (int i = 1; i <= m; i++)
-   {
-      maxf.add_edge(n + i, n + m + 1, 1);
-   }
-   cout << maxf.edmonds_karp(0,n+m+1)<<endl;
-           // }
-           return 0;
+   cout<<maxf.edmonds_karp(0,5)<<endl;
+   // 0-->source 5-->destination
+   return 0;
 }
